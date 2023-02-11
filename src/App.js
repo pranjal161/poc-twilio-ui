@@ -5,15 +5,15 @@ import { useState } from 'react';
 
 const App = () => {
 
-  const [phoneNumber, updatePhone] = useState();
+  const [from, updateFrom] = useState();
   const [message, updatemsg] = useState();
-
+  const [to, updateTo] = useState();
 
   const call = () => {
     fetch('http://localhost:8080/call', {
       method: 'POST',
-      body: JSON.stringify({ phoneNumber: phoneNumber, message: message }),
-      headers: { 'Content-Type': 'application/json'}
+      body: JSON.stringify({ from: from, to: to, message: message }),
+      headers: { 'Content-Type': 'application/json' }
     }).then((response) => {
       if (response.status === 200) {
         response.clone().json().then((data) => {
@@ -29,8 +29,9 @@ const App = () => {
     <div className="App">
       <Header />
       <div style={{ marginTop: '2%' }}>
-        <input style={{ marginRight: '1%' }} onChange={(event) => updatePhone(event.target.value)} placeholder='Enter Phone Number'></input>
-        <input style={{ marginRight: '1%' }} onChange={(event) => updatemsg(event.target.value)} placeholder='Enter Message'></input>
+        <input style={{ marginRight: '1%' }} onChange={(event) => updateFrom(event.target.value)} placeholder='From'></input>
+        <input style={{ marginRight: '1%' }} onChange={(event) => updateTo(event.target.value)} placeholder='To'></input>
+        <input style={{ marginRight: '1%' }} onChange={(event) => updatemsg(event.target.value)} placeholder='Message'></input>
         <button onClick={() => call()}>Call</button>
       </div>
     </div>
