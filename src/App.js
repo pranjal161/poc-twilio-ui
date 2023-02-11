@@ -10,7 +10,7 @@ const App = () => {
   const [to, updateTo] = useState();
 
   const call = () => {
-    fetch('https://fo82xa5uv0.execute-api.eu-west-1.amazonaws.com/call', {
+    fetch('https://fo82xa5uv0.execute-api.eu-west-1.amazonaws.com/dev/call', {
       method: 'POST',
       body: JSON.stringify({ from: from, to: to, message: message }),
       headers: { 'Content-Type': 'application/json' }
